@@ -1,0 +1,35 @@
+[remap]
+
+importer="texture"
+type="StreamTexture"
+path="res://.import/pink_star_mouth.png-9885b5388ef722d8c9431f2d68fb3bb0.stex"
+metadata={
+"vram_texture": false
+}
+
+[deps]
+
+source_file="res://item/resource/pink_star/pink_star_mouth.png"
+dest_files=[ "res://.import/pink_star_mouth.png-9885b5388ef722d8c9431f2d68fb3bb0.stex" ]
+
+[params]
+
+compress/mode=0
+compress/lossy_quality=0.7
+compress/hdr_mode=0
+compress/bptc_ldr=0
+compress/normal_map=0
+flags/repeat=0
+flags/filter=false
+flags/mipmaps=false
+flags/anisotropic=false
+flags/srgb=2
+process/fix_alpha_border=true
+process/premult_alpha=false
+process/HDR_as_SRGB=false
+process/invert_color=false
+process/normal_map_invert_y=false
+stream=false
+size_limit=0
+detect_3d=false
+svg/scale=1.0
