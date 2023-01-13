@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=2]
+[gd_scene load_steps=17 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/char_red.png" type="Texture" id=2]
@@ -65,6 +65,18 @@ tracks/4/keys = {
 "transitions": PoolRealArray( 1 ),
 "update": 0,
 "values": [ false ]
+}
+tracks/5/type = "value"
+tracks/5/path = NodePath("Texture:texture")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ ExtResource( 2 ) ]
 }
 
 [sub_resource type="RectangleShape2D" id=8]
@@ -313,6 +325,23 @@ tracks/0/keys = {
 "values": [ 80, 81, 82 ]
 }
 
+[sub_resource type="Animation" id=13]
+resource_name = "wall_slide"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 85, 86 ]
+}
+
 [sub_resource type="RectangleShape2D" id=7]
 extents = Vector2( 6, 15.5 )
 
@@ -341,6 +370,7 @@ anims/jump = SubResource( 5 )
 anims/landing = SubResource( 6 )
 anims/run = SubResource( 3 )
 anims/shield = SubResource( 12 )
+anims/wall_slide = SubResource( 13 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 12.5 )
@@ -355,5 +385,10 @@ drag_margin_v_enabled = true
 [node name="AttackArea" type="Area2D" parent="."]
 
 [node name="Colisao" type="CollisionShape2D" parent="AttackArea"]
+shape = SubResource( 8 )
+
+[node name="WallRay" type="RayCast2D" parent="."]
+enabled = true
+cast_to = Vector2( 5.2, 0 )
 
 [connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]

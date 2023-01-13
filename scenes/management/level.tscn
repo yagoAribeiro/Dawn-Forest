@@ -34,10 +34,8 @@ tile_data = PoolIntArray( 327687, 0, 0, 327693, 0, 0, 327694, 1, 0, 327695, 2, 0
 [node name="Background" parent="." instance=ExtResource( 2 )]
 can_process = false
 
-[node name="Mask" parent="." instance=ExtResource( 1 )]
-z_index = 1
-day_duration = 32.0
-menu_process = true
-
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 175, 68 )
+
+[node name="Mask" parent="." instance=ExtResource( 1 )]
+day_duration = 39.721
