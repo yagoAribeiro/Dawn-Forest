@@ -12,7 +12,7 @@ export(NodePath) onready var player = get_node(player) as KinematicBody2D
 
 func animate(direction: Vector2) -> void:
 	verify_position(direction)
-	if player.attacking or player.crouching or player.defending:
+	if player.attacking or player.crouching or player.defending or player.wall_sliding:
 		action_behavior()
 	elif direction.y !=0:
 		vertical_behavior(direction)
@@ -41,7 +41,10 @@ func horizontal_behavior(direction: Vector2) -> void:
 		animation.play("idle")
 	
 func action_behavior() -> void:
-	if player.attacking and normal_attack:
+	if player.wall_sliding:
+		animation.play("wall_slide")
+		
+	elif player.attacking and normal_attack:
 		animation.play("attack" + suffix)
 		
 	elif player.defending and shield_off:

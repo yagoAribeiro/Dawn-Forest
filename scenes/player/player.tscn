@@ -348,8 +348,10 @@ extents = Vector2( 6, 15.5 )
 [node name="Player" type="KinematicBody2D"]
 script = ExtResource( 1 )
 speed = 75
-jump_speed = 175
+wall_gravity = 150
 player_gravity = 350
+jump_speed = 175
+wall_jump_speed = 100
 
 [node name="Texture" type="Sprite" parent="."]
 texture = ExtResource( 2 )
