@@ -3,27 +3,30 @@ extends KinematicBody2D
 class_name Player
 
 onready var player_sprite: Sprite = get_node("Texture")
-var velocity: Vector2
+onready var wall_ray: RayCast2D = get_node("WallRay")
+onready var stats: Node = get_node("Stats")
 
 export(int) var speed
-
-var jump_count: int = 0
-
-var landing: bool = true
-var attacking: bool = false
-var defending: bool = false
-var crouching: bool = false
-var wall_sliding: bool = false
-
-var not_on_wall: bool = true
-var wall_direction: Vector2 = Vector2.ZERO
-var can_track_input: bool = true
-
-
+export(int) var wall_impulse
 export(int) var wall_gravity
 export(int) var player_gravity
 export(int) var jump_speed
 export(int) var wall_jump_speed
+
+var jump_count: int = 0
+var velocity: Vector2
+
+var landing: bool = true
+var on_hit: bool = false
+var dead: bool = false
+var attacking: bool = false
+var defending: bool = false
+var crouching: bool = false
+var wall_sliding: bool = false
+var not_on_wall: bool = true
+var can_track_input: bool = true
+var wall_direction: int = 1
+
 
 
 func _physics_process(delta: float):
@@ -52,7 +55,7 @@ func vertical_movement_env() -> void:
 		jump_count += 1
 		if is_on_wall_slide():
 			velocity.y -= wall_jump_speed
-			#velocity.x = -wall_direction*speed
+			velocity.x += wall_impulse*wall_direction
 		else: 
 			velocity.y -= jump_speed
 			
@@ -84,19 +87,23 @@ func attack() -> void:
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
 		crouching = true
+		stats.shielding = false
 		can_track_input = false
 	elif not defending:
 		crouching = false
 		can_track_input = true
+		stats.shielding = false
 		player_sprite.crouching_off = true
 	
 func defense() -> void:
 	if Input.is_action_pressed("defense") and is_on_floor() and not crouching:
 		defending = true
 		can_track_input = false
+		stats.shielding = true
 	elif not crouching:
 		defending = false
 		can_track_input = true
+		stats.shielding = false
 		player_sprite.shield_off = true
 
 func gravity(delta: float) -> void:

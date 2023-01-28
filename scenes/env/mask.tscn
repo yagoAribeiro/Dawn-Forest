@@ -4,6 +4,23 @@
 
 [node name="Mask" type="CanvasModulate"]
 script = ExtResource( 1 )
+cycles = [ {
+"color": Color( 1, 1, 1, 1 ),
+"duration": 0.3,
+"name": "day"
+}, {
+"color": Color( 0.968627, 0.67451, 0.219608, 1 ),
+"duration": 0.15,
+"name": "sunfall"
+}, {
+"color": Color( 0.12549, 0.14902, 0.188235, 1 ),
+"duration": 0.45,
+"name": "night"
+}, {
+"color": Color( 0.992157, 1, 0.760784, 1 ),
+"duration": 0.1,
+"name": "sunset"
+} ]
 
 [node name="Tween" type="Tween" parent="."]
 

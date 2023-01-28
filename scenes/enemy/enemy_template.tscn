@@ -1,0 +1,38 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/enemy/detection_area.gd" type="Script" id=1]
+[ext_resource path="res://scripts/enemy/enemy_template.gd" type="Script" id=2]
+[ext_resource path="res://scripts/enemy/enemy_texture.gd" type="Script" id=3]
+
+[node name="EnemyTemplate" type="KinematicBody2D"]
+script = ExtResource( 2 )
+
+[node name="Texture" type="Sprite" parent="."]
+script = ExtResource( 3 )
+enemy = NodePath("..")
+animation = NodePath("../Animation")
+attack_area_collision = NodePath("../AttackArea")
+
+[node name="Collision" type="CollisionShape2D" parent="."]
+
+[node name="DetectionArea" type="Area2D" parent="."]
+script = ExtResource( 1 )
+enemy = NodePath("..")
+
+[node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
+
+[node name="CollisionArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
+
+[node name="AttackArea" type="Area2D" parent="."]
+
+[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+
+[node name="Animation" type="AnimationPlayer" parent="."]
+
+[node name="FloorRay" type="RayCast2D" parent="."]
+
+[connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
+[connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]
+[connection signal="animation_finished" from="Animation" to="Texture" method="_on_animation_finished"]

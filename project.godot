@@ -14,6 +14,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/env/background.gd"
 }, {
+"base": "Area2D",
+"class": "DetectionArea",
+"language": "GDScript",
+"path": "res://scripts/enemy/detection_area.gd"
+}, {
 "base": "Node",
 "class": "DiscordRPC",
 "language": "GDScript",
@@ -23,6 +28,16 @@ _global_script_classes=[ {
 "class": "DiscordRPCEnum",
 "language": "GDScript",
 "path": "res://addons/godot_editor_discord_presence/Discord RPC/DiscordRPCEnum.gd"
+}, {
+"base": "KinematicBody2D",
+"class": "EnemyTemplate",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_template.gd"
+}, {
+"base": "Sprite",
+"class": "EnemyTexture",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_texture.gd"
 }, {
 "base": "EditorVCSInterface",
 "class": "GitAPI",
@@ -54,6 +69,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_editor_discord_presence/Discord RPC/util/IPCUtil.gd"
 }, {
+"base": "Node2D",
+"class": "Level",
+"language": "GDScript",
+"path": "res://scripts/management/level.gd"
+}, {
 "base": "CanvasModulate",
 "class": "Mask",
 "language": "GDScript",
@@ -63,6 +83,11 @@ _global_script_classes=[ {
 "class": "Player",
 "language": "GDScript",
 "path": "res://scripts/player/player.gd"
+}, {
+"base": "Node",
+"class": "PlayerStats",
+"language": "GDScript",
+"path": "res://scripts/player/stats.gd"
 }, {
 "base": "Sprite",
 "class": "Player_Texture",
@@ -116,16 +141,21 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Background": "",
+"DetectionArea": "",
 "DiscordRPC": "",
 "DiscordRPCEnum": "",
+"EnemyTemplate": "",
+"EnemyTexture": "",
 "GitAPI": "",
 "IPC": "",
 "IPCModule": "",
 "IPCPayload": "",
 "IPCPipe": "",
 "IPCUtil": "",
+"Level": "",
 "Mask": "",
 "Player": "",
+"PlayerStats": "",
 "Player_Texture": "",
 "RichPresence": "",
 "RichPresenceButton": "",

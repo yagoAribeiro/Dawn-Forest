@@ -10,7 +10,7 @@ export(Array, Dictionary) var cycles: Array = [
 		{"color": Color(0.992157, 1, 0.760784), "duration": 0.10, "name":"sunset"}
 	]
 enum Cycle{DAY, SUNFALL, NIGHT, SUNSET}
-export var current_cycle: int = Cycle.DAY
+export(int, 0, 3) var current_cycle: int = Cycle.DAY
  
 func _ready():
 	for turn in cycles:
@@ -21,7 +21,7 @@ func _ready():
 		#Procura todas as background layer no parent para poder aplicar a mesma node
 		if child is ParallaxBackground and not child.find_node("Mask"):
 			child.add_child(self.duplicate())
-		
+	color = cycles[current_cycle].color	
 	if cycle_enabled:
 		wait_cycle()
 
