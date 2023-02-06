@@ -5,33 +5,42 @@
 [ext_resource path="res://scripts/enemy/enemy_texture.gd" type="Script" id=3]
 
 [node name="EnemyTemplate" type="KinematicBody2D"]
+collision_layer = 8
+collision_mask = 3
 script = ExtResource( 2 )
 
 [node name="Texture" type="Sprite" parent="."]
 script = ExtResource( 3 )
 enemy = NodePath("..")
 animation = NodePath("../Animation")
-attack_area_collision = NodePath("../AttackArea")
+attack_area_collision = NodePath("../EnemyAttackArea")
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 
 [node name="DetectionArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 script = ExtResource( 1 )
 enemy = NodePath("..")
 
 [node name="Collision" type="CollisionShape2D" parent="DetectionArea"]
 
 [node name="CollisionArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
 
 [node name="Collision" type="CollisionShape2D" parent="CollisionArea"]
 
-[node name="AttackArea" type="Area2D" parent="."]
+[node name="EnemyAttackArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
 
-[node name="Collision" type="CollisionShape2D" parent="AttackArea"]
+[node name="Collision" type="CollisionShape2D" parent="EnemyAttackArea"]
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 
 [node name="FloorRay" type="RayCast2D" parent="."]
+collision_mask = 3
 
 [connection signal="body_entered" from="DetectionArea" to="DetectionArea" method="_on_body_entered"]
 [connection signal="body_exited" from="DetectionArea" to="DetectionArea" method="_on_body_exited"]

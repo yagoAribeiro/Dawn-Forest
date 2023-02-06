@@ -96,12 +96,6 @@ func verify_shield(value: int) -> void:
 		damage = abs((base_defense+bonus_defense) - value)
 	current_health -= damage
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("ui_select"):
-		update_health("Decrease", 5)
-		
-
-
 func _on_CollisionArea_area_entered(area) -> void:
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)

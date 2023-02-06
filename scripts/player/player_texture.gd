@@ -20,7 +20,7 @@ func animate(direction: Vector2) -> void:
 		action_behavior()
 	elif direction.y !=0:
 		vertical_behavior(direction)
-	elif player.landing:
+	elif player.landing and player.is_on_floor():
 		animation.play("landing")
 		player.set_physics_process(false)
 	else:
