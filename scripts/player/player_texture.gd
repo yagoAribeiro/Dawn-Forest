@@ -106,5 +106,6 @@ func _on_Animation_animation_finished(anim_name: String):
 				animation.play("crouch")
 		
 		"dead":
+			yield(get_tree().create_timer(4), "timeout")
 			emit_signal("game_over")
 			

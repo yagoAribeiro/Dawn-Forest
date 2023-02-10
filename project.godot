@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/env/background.gd"
 }, {
 "base": "Area2D",
+"class": "CollisionArea",
+"language": "GDScript",
+"path": "res://scripts/enemy/collision_area.gd"
+}, {
+"base": "Area2D",
 "class": "DetectionArea",
 "language": "GDScript",
 "path": "res://scripts/enemy/detection_area.gd"
@@ -28,6 +33,16 @@ _global_script_classes=[ {
 "class": "DiscordRPCEnum",
 "language": "GDScript",
 "path": "res://addons/godot_editor_discord_presence/Discord RPC/DiscordRPCEnum.gd"
+}, {
+"base": "Area2D",
+"class": "EnemyAttackArea",
+"language": "GDScript",
+"path": "res://scripts/enemy/enemy_attack_area.gd"
+}, {
+"base": "Node",
+"class": "EnemyStats",
+"language": "GDScript",
+"path": "res://scripts/enemy/stats.gd"
 }, {
 "base": "KinematicBody2D",
 "class": "EnemyTemplate",
@@ -146,9 +161,12 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "Background": "",
+"CollisionArea": "",
 "DetectionArea": "",
 "DiscordRPC": "",
 "DiscordRPCEnum": "",
+"EnemyAttackArea": "",
+"EnemyStats": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
 "GitAPI": "",

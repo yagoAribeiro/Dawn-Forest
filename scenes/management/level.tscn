@@ -48,8 +48,14 @@ cell_size = Vector2( 16, 16 )
 format = 1
 tile_data = PoolIntArray( 327687, 0, 0, 327693, 0, 0, 327694, 1, 0, 327695, 2, 0, 589848, 0, 0, 589852, 1, 0, 589857, 2, 0, 589874, 0, 0, 589883, 0, 0, 589890, 1, 0, 589892, 2, 0, 589899, 0, 0, 1245223, 1, 0, 1245227, 2, 0, 1376340, 2, 0, 1376341, 0, 0, 1376347, 1, 0, 1507380, 0, 0, 1507381, 2, 0, 1507385, 1, 0, 1507389, 0, 0, 2031672, 0, 0, 2031673, 0, 0, 2031675, 2, 0, 2031678, 2, 0, 2031691, 1, 0, 2031693, 0, 0 )
 
+[node name="Enemies" type="Node" parent="."]
+
+[node name="Whale" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 421, 134 )
+
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 175, 68 )
+z_index = 1
 wall_impulse = 350
 wall_jump_speed = 150
 
@@ -60,8 +66,3 @@ current_cycle = 2
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource( 1 )
-
-[node name="Enemies" type="Node" parent="."]
-
-[node name="Whale" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 494, 147 )

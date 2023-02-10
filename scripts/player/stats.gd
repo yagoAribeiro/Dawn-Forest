@@ -100,7 +100,7 @@ func _on_CollisionArea_area_entered(area) -> void:
 	if area.name == "EnemyAttackArea":
 		update_health("Decrease", area.damage)
 		colisao.set_deferred("monitoring", false)
-		invencibility_timer.start(area.invencibility_timer)
+		invencibility_timer.start(area.invencibility_time)
 
 
 func _on_InvencibilityTimer_timeout() -> void:
