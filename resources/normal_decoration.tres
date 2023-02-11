@@ -77,7 +77,7 @@
 4/shape_one_way = false
 4/shape_one_way_margin = 0.0
 4/shapes = [  ]
-4/z_index = 0
+4/z_index = 2
 5/name = "rock_3.png 5"
 5/texture = ExtResource( 6 )
 5/tex_offset = Vector2( 0, 0 )

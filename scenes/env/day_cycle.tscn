@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://scripts/env/day_cycle.gd" type="Script" id=1]
+
+[node name="DayCycle" type="CanvasModulate"]
+script = ExtResource( 1 )
+cycle_duration = 30.0

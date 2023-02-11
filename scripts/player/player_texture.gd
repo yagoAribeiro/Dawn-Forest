@@ -11,9 +11,13 @@ var crouching_off: bool = false
 export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
 export(NodePath) onready var player = get_node(player) as KinematicBody2D
 export(NodePath) onready var attack_collision = get_node(attack_collision) as CollisionShape2D
+export(NodePath) onready var light_animation = get_node(light_animation) as AnimationPlayer
 
 func animate(direction: Vector2) -> void:
 	verify_position(direction)
+	if player.light_on:
+		light_animation.play("light_anim")
+		
 	if player.on_hit or player.dead:
 		hit_behavior()
 	elif player.attacking or player.crouching or player.defending or player.wall_sliding:
@@ -81,7 +85,7 @@ func vertical_behavior(direction: Vector2) -> void:
 		animation.play("jump")
 
 
-func _on_Animation_animation_finished(anim_name: String):
+func _on_animation_finished(anim_name: String):
 	match(anim_name):
 		"landing":
 			player.landing = false
@@ -108,4 +112,12 @@ func _on_Animation_animation_finished(anim_name: String):
 		"dead":
 			yield(get_tree().create_timer(4), "timeout")
 			emit_signal("game_over")
+		
+		"light_anim":
+			if !player.light_on:
+				light_animation.stop()
+		
 			
+
+
+		

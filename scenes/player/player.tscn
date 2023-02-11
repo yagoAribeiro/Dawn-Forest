@@ -452,13 +452,12 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 0,
-"values": [ 1.36 ]
+"values": [ 0.0 ]
 }
 
 [sub_resource type="Animation" id=15]
 resource_name = "light_anim"
 length = 2.0
-loop = true
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:energy")
 tracks/0/interp = 1
@@ -466,10 +465,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1.1, 2 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ 0.8, 0.6 ]
+"values": [ 0.0, 0.6, 0.0 ]
 }
 
 [node name="Player" type="KinematicBody2D"]
@@ -491,6 +490,7 @@ script = ExtResource( 3 )
 animation = NodePath("../Animation")
 player = NodePath("..")
 attack_collision = NodePath("../AttackArea/Colisao")
+light_animation = NodePath("../Light2D/LightAnimation")
 
 [node name="Animation" type="AnimationPlayer" parent="."]
 anims/RESET = SubResource( 1 )
@@ -532,10 +532,9 @@ cast_to = Vector2( 5.5, 0 )
 [node name="Light2D" type="Light2D" parent="."]
 texture = ExtResource( 4 )
 color = Color( 1, 1, 2.2, 1 )
-energy = 1.36
+energy = 0.0
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Light2D"]
-autoplay = "light_anim"
+[node name="LightAnimation" type="AnimationPlayer" parent="Light2D"]
 anims/RESET = SubResource( 14 )
 anims/light_anim = SubResource( 15 )
 
@@ -555,6 +554,7 @@ collision_mask = 0
 position = Vector2( -1, 12.5 )
 shape = SubResource( 7 )
 
-[connection signal="animation_finished" from="Animation" to="Texture" method="_on_Animation_animation_finished"]
+[connection signal="animation_finished" from="Animation" to="Texture" method="_on_animation_finished"]
+[connection signal="animation_finished" from="Light2D/LightAnimation" to="Texture" method="_on_animation_finished"]
 [connection signal="timeout" from="Stats/InvencibilityTimer" to="Stats" method="_on_InvencibilityTimer_timeout"]
 [connection signal="area_entered" from="CollisionArea" to="Stats" method="_on_CollisionArea_area_entered"]

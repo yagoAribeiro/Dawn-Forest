@@ -16,6 +16,7 @@ export(int) var wall_jump_speed
 var jump_count: int = 0
 var velocity: Vector2
 
+#Flags
 var landing: bool = true
 var on_hit: bool = false
 var dead: bool = false
@@ -25,6 +26,7 @@ var crouching: bool = false
 var wall_sliding: bool = false
 var not_on_wall: bool = true
 var can_track_input: bool = true
+var light_on = false
 var wall_direction: int = 1
 
 
@@ -115,6 +117,8 @@ func gravity(delta: float) -> void:
 		velocity.y += delta*player_gravity
 		if velocity.y >= player_gravity:
 			velocity.y = player_gravity
+
+
 
 
 
