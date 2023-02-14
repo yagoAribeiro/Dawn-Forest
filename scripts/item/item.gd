@@ -3,6 +3,7 @@ class_name Item
 
 var item_name: String
 var item_desc: String
+var quantity: int
 var item_frame_path: String = "res://item"
 onready var item_frame: Sprite = get_node("ItemFrame")
 var item_sell_value: int
@@ -10,8 +11,21 @@ var item_type: String
 var item_stats: Dictionary
 var item_consumable_info: Dictionary
 var has_info: bool = false
+var compressed_data: Dictionary
 
-func get_item(key: String):
+func _process(_delta: float):
+	compressed_data = {
+		"item_name": item_name,
+		"item_desc": item_desc,
+		"quantity": quantity,
+		"item_frame_path": item_frame_path,
+		"item_sell_value": item_sell_value,
+		"item_type": item_type,
+		"item_stats": item_stats,
+		"item_consumable_info": item_consumable_info
+		}
+
+func get_data(key: String):
 	var item_list: ItemData = ItemData.new()
 	var item_info: Dictionary = item_list.load_item_data(key)
 	if item_info.size()!=0:
@@ -32,14 +46,18 @@ func apply_item_info(info: Dictionary) -> void:
 	item_sell_value = info.gold_value
 	item_type = info.type
 	has_info = true
-		
-			
-func spawn_item(item_position: Vector2) -> void:
-	if has_info:
-		self.global_position = item_position
-		var impulse_value: Vector2 = Vector2(rand_range(-10.0, 10.0), rand_range(-50.0, -100.0))
-		apply_impulse(Vector2.ZERO, impulse_value)
-
+	
+func descompress_item_info(item_data: Dictionary) -> void:
+	self.item_name = item_data.item_name
+	self.item_desc = item_data.item_desc
+	self.quantity = item_data.quantity
+	self.item_frame_path = item_data.item_frame_path
+	self.item_sell_value = item_data.item_sell_value
+	self.item_type = item_data.item_type
+	self.item_stats = item_data.item_stats
+	self.item_consumable_info = item_data.item_consumable_info
+	has_info = true
 
 func _on_Item_ready():
 	item_frame.texture = load(item_frame_path)
+	item_frame.texture.resource_local_to_scene = true

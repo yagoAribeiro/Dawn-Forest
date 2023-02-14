@@ -7,7 +7,7 @@ onready var floor_ray:RayCast2D = get_node("FloorRay")
 onready var animation:AnimationPlayer = get_node("Animation")
 onready var stats:Node = get_node("Stats")
 onready var detection_area:Area2D = get_node("DetectionArea")
-onready var item: PackedScene = preload("res://scenes/item/item.tscn")
+onready var item: PackedScene = preload("res://scenes/item/physical_item.tscn")
 #Flags
 var can_die: bool = false
 var can_hit: bool = false
