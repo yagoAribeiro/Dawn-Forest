@@ -13,6 +13,7 @@ export(int) var player_gravity
 export(int) var jump_speed
 export(int) var wall_jump_speed
 
+var inventory: Array = []
 var jump_count: int = 0
 var velocity: Vector2
 

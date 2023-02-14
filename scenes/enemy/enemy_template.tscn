@@ -9,8 +9,9 @@
 [ext_resource path="res://scripts/enemy/stats.gd" type="Script" id=7]
 
 [sub_resource type="ShaderMaterial" id=1]
+resource_local_to_scene = true
 shader = ExtResource( 6 )
-shader_param/white_amount = 0.0
+shader_param/white_amount = null
 
 [node name="EnemyTemplate" type="KinematicBody2D"]
 collision_layer = 8

@@ -55,6 +55,9 @@ func _on_animation_finished(anim_name: String) -> void:
 			
 		"dead":
 			animation.play("despawn")
+			var item: Item = enemy.item.instance()
+			get_tree().root.call_deferred("add_child", item)
+			item.get_item("Health Potion").spawn_item(enemy.global_position)
 			
 		"despawn":
 			enemy.queue_free()

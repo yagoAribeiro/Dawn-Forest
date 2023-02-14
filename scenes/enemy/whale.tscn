@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=2]
+[gd_scene load_steps=23 format=2]
 
 [ext_resource path="res://scenes/enemy/enemy_template.tscn" type="PackedScene" id=1]
 [ext_resource path="res://enemy/whale/run.png" type="Texture" id=2]
@@ -7,6 +7,12 @@
 [ext_resource path="res://enemy/whale/hit.png" type="Texture" id=5]
 [ext_resource path="res://enemy/whale/dead.png" type="Texture" id=6]
 [ext_resource path="res://enemy/whale/attack.png" type="Texture" id=7]
+[ext_resource path="res://shaders/white_amount_shader.tres" type="Shader" id=8]
+
+[sub_resource type="ShaderMaterial" id=16]
+resource_local_to_scene = true
+shader = ExtResource( 8 )
+shader_param/white_amount = 0.0
 
 [sub_resource type="Animation" id=12]
 length = 0.001
@@ -25,7 +31,7 @@ tracks/0/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "blink"
-length = 0.2
+length = 0.25
 tracks/0/type = "value"
 tracks/0/path = NodePath(".:material:shader_param/white_amount")
 tracks/0/interp = 1
@@ -33,10 +39,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.2 ),
-"transitions": PoolRealArray( 3.24901, 1 ),
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 0,
-"values": [ 1.7, 0.0 ]
+"values": [ 5.0, 0.0 ]
 }
 
 [sub_resource type="RectangleShape2D" id=4]
@@ -500,6 +506,7 @@ tracks/3/keys = {
 scale = Vector2( 0.5, 0.5 )
 
 [node name="Texture" parent="." index="0"]
+material = SubResource( 16 )
 texture = ExtResource( 3 )
 hframes = 44
 region_rect = Rect2( -296.594, -38, 838, 134 )
@@ -553,4 +560,4 @@ chase_speed = 60
 proximity_threshold = 20
 raycast_default_position = -33
 detection_area_default_position = -110
-max_health = 15
+max_health = 2

@@ -51,6 +51,12 @@ tile_data = PoolIntArray( 327687, 0, 0, 327693, 0, 0, 327694, 1, 0, 327695, 2, 0
 [node name="Whale" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 421, 134 )
 
+[node name="Whale2" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 310, 145 )
+
+[node name="Whale3" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 499, 138 )
+
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 175, 68 )
 z_index = 1

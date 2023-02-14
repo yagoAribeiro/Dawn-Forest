@@ -89,6 +89,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://addons/godot_editor_discord_presence/Discord RPC/util/IPCUtil.gd"
 }, {
+"base": "RigidBody2D",
+"class": "Item",
+"language": "GDScript",
+"path": "res://scripts/item/item.gd"
+}, {
+"base": "Node",
+"class": "ItemData",
+"language": "GDScript",
+"path": "res://scripts/management/item_list.gd"
+}, {
 "base": "Node2D",
 "class": "Level",
 "language": "GDScript",
@@ -176,6 +186,8 @@ _global_script_class_icons={
 "IPCPayload": "",
 "IPCPipe": "",
 "IPCUtil": "",
+"Item": "",
+"ItemData": "",
 "Level": "",
 "Player": "",
 "PlayerStats": "",
@@ -272,6 +284,7 @@ defense={
 2d_physics/layer_2="SubTile"
 2d_physics/layer_3="Player"
 2d_physics/layer_4="Enemies"
+2d_physics/layer_5="Item"
 
 [physics]
 
