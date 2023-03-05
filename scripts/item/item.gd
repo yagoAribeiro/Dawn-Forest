@@ -3,7 +3,7 @@ class_name Item
 
 var item_name: String
 var item_desc: String
-var quantity: int
+var quantity: int = 1
 var item_frame_path: String = "res://item"
 onready var item_frame: Sprite = get_node("ItemFrame")
 var item_sell_value: int
@@ -11,19 +11,6 @@ var item_type: String
 var item_stats: Dictionary
 var item_consumable_info: Dictionary
 var has_info: bool = false
-var compressed_data: Dictionary
-
-func _process(_delta: float):
-	compressed_data = {
-		"item_name": item_name,
-		"item_desc": item_desc,
-		"quantity": quantity,
-		"item_frame_path": item_frame_path,
-		"item_sell_value": item_sell_value,
-		"item_type": item_type,
-		"item_stats": item_stats,
-		"item_consumable_info": item_consumable_info
-		}
 
 func get_data(key: String):
 	var item_list: ItemData = ItemData.new()
@@ -38,7 +25,8 @@ func apply_item_info(info: Dictionary) -> void:
 	if "consumable_info" in info:
 		item_consumable_info = info.consumable_info
 	
-	if "stats" in info:		
+	if "stats" in info:	
+		gacha_stats(info.stats)	
 		item_stats = info.stats
 			
 	item_desc = info.desc
@@ -46,6 +34,31 @@ func apply_item_info(info: Dictionary) -> void:
 	item_sell_value = info.gold_value
 	item_type = info.type
 	has_info = true
+
+func gacha_stats(stats: Dictionary) -> void:
+	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	rng.randomize()
+	var number: int = rng.randi()%20+1
+	var prefix: String = ""
+	var multiplier: float = 1.0
+	if number<=5:
+		prefix = "(Broken) "
+		multiplier = 0.5
+	elif number<=10:
+		prefix ="(Damaged) "
+		multiplier = 0.75
+	elif number<=14:
+		prefix ="(Natural) "
+		multiplier = 1.0
+	elif number<=19:
+		prefix = "(Relic) "
+		multiplier = 1.5
+	else:
+		prefix = "(Legendary) "
+		multiplier = 2.0
+	item_name = prefix+item_name
+	for stat in stats:
+		stats[stat] = int(float(multiplier*stats[stat]))	
 	
 func descompress_item_info(item_data: Dictionary) -> void:
 	self.item_name = item_data.item_name

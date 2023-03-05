@@ -264,6 +264,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id=9]
 resource_name = "despawn"
+length = 3.5
 tracks/0/type = "value"
 tracks/0/path = NodePath("Texture:texture")
 tracks/0/interp = 1
@@ -307,10 +308,10 @@ tracks/3/loop_wrap = true
 tracks/3/imported = false
 tracks/3/enabled = true
 tracks/3/keys = {
-"times": PoolRealArray( 0, 1 ),
-"transitions": PoolRealArray( 1, 1 ),
+"times": PoolRealArray( 0, 1.8, 3.3 ),
+"transitions": PoolRealArray( 1, 1, 1 ),
 "update": 0,
-"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
 }
 tracks/4/type = "method"
 tracks/4/path = NodePath(".")

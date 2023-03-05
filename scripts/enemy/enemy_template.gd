@@ -7,7 +7,9 @@ onready var floor_ray:RayCast2D = get_node("FloorRay")
 onready var animation:AnimationPlayer = get_node("Animation")
 onready var stats:Node = get_node("Stats")
 onready var detection_area:Area2D = get_node("DetectionArea")
-onready var item: PackedScene = preload("res://scenes/item/physical_item.tscn")
+onready var item_scene: PackedScene = preload("res://scenes/item/physical_item.tscn")
+onready var dice: Resource = preload("res://scenes/management/dice.tscn")
+onready var drop_list: Array 
 #Flags
 var can_die: bool = false
 var can_hit: bool = false
@@ -20,6 +22,7 @@ var looking_back = false
 var player_ref: Player = null
 var last_direction: Vector2 = Vector2(1.0, 1.0)
 var sorted_direction: bool = false
+var dropped_itens: Array = []
 #Vars
 onready var speed = stats.speed
 onready var chase_speed = stats.chase_speed
@@ -123,5 +126,21 @@ func stop_move(stopped: bool) ->void:
 		can_move = false
 	else: 
 		can_move = true
+		
 
+func drop_item() -> void:
+	var randomizer: Gacha = Gacha.new()
+	dropped_itens = randomizer.gacha(drop_list)
+	if dropped_itens.size()!=0:
+		var dice_instance = dice.instance()
+		get_tree().root.add_child(dice_instance)
+		dice_instance.global_position = Vector2(global_position.x, global_position.y-40)
+		dice_instance.start_timer(randomizer.d20result, self)	
+				
+func drop() -> void:
+	for item in dropped_itens:
+		var item_dropped: PhysicalItem = item_scene.instance()
+		get_tree().root.call_deferred("add_child", item_dropped)
+		item_dropped.get_data(item["name"])
+		item_dropped.spawn_item(global_position)
 

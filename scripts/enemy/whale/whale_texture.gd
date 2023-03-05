@@ -1,6 +1,16 @@
 extends EnemyTexture
 class_name WhaleTexture
 
+func _ready():
+	enemy.drop_list = [
+	#Ordem de raridade decrescente
+	{"name": "Health Potion", "chance": 20.0},
+	{"name": "Mana Potion", "chance": 15.0},
+	{"name": "Whale Tail", "chance": 10.0},
+	{"name": "Whale Eye", "chance": 10.0},
+	{"name": "Whale Mask", "chance": 2.5}
+]
+
 func animate(velocity: Vector2) -> void:
 	shader_animations()
 	if enemy.can_hit or enemy.can_die or enemy.can_attack:
@@ -22,6 +32,7 @@ func move_behavior(velocity: Vector2) -> void:
 func action_behavior() -> void:
 	if enemy.can_die:
 		animation.play("dead")
+		attack_area_collision.collision.disabled = true
 		enemy.can_hit = false
 		enemy.can_attack = false
 		enemy.hitted = false
@@ -55,9 +66,7 @@ func _on_animation_finished(anim_name: String) -> void:
 			
 		"dead":
 			animation.play("despawn")
-			var item: PhysicalItem = enemy.item.instance()
-			get_tree().root.call_deferred("add_child", item)
-			item.get_data("Health Potion").spawn_item(enemy.global_position)
+			enemy.drop_item()
 			
 		"despawn":
 			enemy.queue_free()

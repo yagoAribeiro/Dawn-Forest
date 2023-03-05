@@ -57,6 +57,24 @@ position = Vector2( 310, 145 )
 [node name="Whale3" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 499, 138 )
 
+[node name="Whale4" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 889, 142 )
+
+[node name="Whale5" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 657, 300 )
+
+[node name="Whale6" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 891, 368 )
+
+[node name="Whale7" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 1157, 492 )
+
+[node name="Whale8" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 895, 497 )
+
+[node name="Whale9" parent="Enemies" instance=ExtResource( 8 )]
+position = Vector2( 1161, 144 )
+
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 175, 68 )
 z_index = 1
