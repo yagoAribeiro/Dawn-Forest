@@ -16,7 +16,7 @@ func start_timer(dice_result: int, enemy):
 	timer.start()
 
 func _on_Timer_timeout():
-	if count<20:
+	if count<10:
 		rng.randomize()
 		count+=1
 		texture.texture = load(str("res://dice/",rng.randi()%20+1,".png"))

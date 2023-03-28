@@ -3,11 +3,14 @@ class_name Gacha
 
 var d20result: int = 0
 
-func gacha(drop_list: Array) -> Array:
+func get_random(from: int, to: int) -> int:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	rng.randomize()
+	return rng.randi()%to+from
+
+func gacha(drop_list: Array) -> Array:
 	#As chances serão trabalhadas de 1 à 1000, então os números precisam ser multiplicados por 10
-	var rand_number: float = float(rng.randi()%1000+1)
+	var rand_number: float = float(get_random(1, 1000))
 	if not rand_number<=drop_list[0]["chance"]*10:
 		#drop_list[0] deve ser sempre o item mais comum, portanto, não há drops
 		return []
@@ -19,7 +22,7 @@ func gacha(drop_list: Array) -> Array:
 		var possible_drop: Array = []
 		if i!=0:
 			#Caso o multiplicador seja maior que 1, terá outros gachas adicionais
-			rand_number = float(rng.randi()%1000+1)
+			rand_number = float(get_random(1, 1000))
 			if not rand_number<=drop_list[0]["chance"]*10:
 				#No caso, se tiver multiplicador, sempre será garantido um item mais comum
 				dropped.append(drop_list[0])
@@ -61,15 +64,12 @@ func same_chance_gacha(drop_list: Array) -> Dictionary:
 	return drop_list[randi()%drop_list.size()]	
 
 func d20_sorter() -> int:
-	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	rng.randomize()
-	var rand_number: int = rng.randi()%20+1
-	d20result = rand_number
-	if rand_number>19:
+	d20result = get_random(1, 20)
+	if d20result>19:
 		return 4
-	elif rand_number>=17:
+	elif d20result>=17:
 		return 3
-	elif rand_number>=10:
+	elif d20result>=10:
 		return 2
 	else:
 		return 1
