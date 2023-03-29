@@ -4,11 +4,11 @@ class_name WhaleTexture
 func _ready():
 	enemy.drop_list = [
 	#Ordem de raridade decrescente
-	{"name": "Whale Tail", "chance": 25.0},
-	{"name": "Whale Eye", "chance": 25.0},
-	{"name": "Health Potion", "chance": 15.0},
-	{"name": "Mana Potion", "chance": 15.0},
-	{"name": "Whale Mask", "chance": 1.5}
+	{"name": "Whale Tail", "id": 4, "chance": 25.0},
+	{"name": "Whale Eye", "id": 3, "chance": 25.0},
+	{"name": "Health Potion", "id": 0, "chance": 15.0},
+	{"name": "Mana Potion", "id": 1, "chance": 15.0},
+	{"name": "Whale Mask", "id": 2, "chance": 1.5}
 ]
 
 func animate(velocity: Vector2) -> void:

@@ -10,16 +10,24 @@ var item_sell_value: int
 var item_type: String
 var item_stats: Dictionary
 var item_consumable_info: Dictionary
+var item_id: int
 var has_info: bool = false
 
-func get_data(key: String):
+func get_data_by_name(key: String):
 	var item_list: ItemData = ItemData.new()
-	var item_info: Dictionary = item_list.load_item_data(key)
+	var item_info: Dictionary = item_list.get_item_by_name(key)
 	if item_info.size()!=0:
-		item_name = key
+		item_name = item_info.name
 		apply_item_info(item_info)
-		return self
-	return null
+	
+func get_data_by_id(id: int):
+	var item_list: ItemData = ItemData.new()
+	var item_info: Dictionary = item_list.get_item_by_id(id)
+	if item_info.size()!=0:
+		item_name = item_info.name
+		apply_item_info(item_info)
+		
+	
 
 func apply_item_info(info: Dictionary) -> void:
 	if "consumable_info" in info:
@@ -33,6 +41,7 @@ func apply_item_info(info: Dictionary) -> void:
 	item_frame_path += info.item_frame
 	item_sell_value = info.gold_value
 	item_type = info.type
+	item_id = info.id
 	has_info = true
 
 func gacha_stats(stats: Dictionary) -> void:
@@ -69,6 +78,7 @@ func descompress_item_info(item_data: Dictionary) -> void:
 	self.item_type = item_data.item_type
 	self.item_stats = item_data.item_stats
 	self.item_consumable_info = item_data.item_consumable_info
+	self.item_id = item_data.item_id
 	has_info = true
 
 func _on_Item_ready():

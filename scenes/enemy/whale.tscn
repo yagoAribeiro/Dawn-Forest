@@ -561,4 +561,4 @@ chase_speed = 60
 proximity_threshold = 20
 raycast_default_position = -33
 detection_area_default_position = -110
-max_health = 15
+max_health = 2

@@ -1,25 +1,31 @@
-{
-    "Health Potion": {
+[
+    {
+        "name": "Health Potion",
+        "id": 0,
         "type": "consumable",
         "gold_value": 18,
-        "consumable_info":{
+        "consumable_info": {
             "use_type": "health",
             "use_value": 5
         },
         "item_frame": "/consumable/health_potion.png",
         "desc": "Uma poção de vida que irá revigorar sua energia!"
     },
-    "Mana Potion": {
+    {
+        "name": "Mana Potion",
+        "id": 1,
         "type": "consumable",
         "gold_value": 15,
-        "consumable_info":{
+        "consumable_info": {
             "use_type": "mana",
             "use_value": 5
         },
         "item_frame": "/consumable/mana_potion.png",
         "desc": "Uma poção de mana que irá revigorar sua mana!"
     },
-    "Whale Mask": {
+    {
+        "name": "Whale Mask",
+        "id": 2,
         "type": "equipment",
         "stats": {
             "phy_dmg": 0,
@@ -31,16 +37,20 @@
         "item_frame": "/equipment/whale_mask.png",
         "desc": "A face de uma baleia derrotada, um forte campo mágico ressona de seu entorno."
     },
-    "Whale Eye": {
+    {
+        "name": "Whale Eye",
+        "id": 3,
         "type": "resource",
         "gold_value": 21,
         "item_frame": "/resource/whale/whale_eye.png",
         "desc": "O olho que restou de uma baleia derrotada em combate."
     },
-    "Whale Tail": {
+    {
+        "name": "Whale Tail",
+        "id": 4,
         "type": "resource",
         "gold_value": 60,
         "item_frame": "/resource/whale/whale_tail.png",
         "desc": "A cauda de uma baleia, um item extremamente exótico!"
     }
-}
+]

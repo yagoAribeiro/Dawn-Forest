@@ -16,7 +16,8 @@ func _physics_process(_delta: float):
 		"item_sell_value": item_sell_value,
 		"item_type": item_type,
 		"item_stats": item_stats,
-		"item_consumable_info": item_consumable_info
+		"item_consumable_info": item_consumable_info,
+		"item_id": item_id
 		}
 	if can_sleep:
 		animation.play("idle")

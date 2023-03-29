@@ -141,6 +141,6 @@ func drop() -> void:
 	for item in dropped_itens:
 		var item_dropped: PhysicalItem = item_scene.instance()
 		get_tree().root.call_deferred("add_child", item_dropped)
-		item_dropped.get_data(item["name"])
+		item_dropped.get_data_by_id(item["id"])
 		item_dropped.spawn_item(global_position)
 
