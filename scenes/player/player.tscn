@@ -1,4 +1,4 @@
-[gd_scene load_steps=23 format=2]
+[gd_scene load_steps=25 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/char_red.png" type="Texture" id=2]
@@ -386,9 +386,23 @@ tracks/0/keys = {
 "update": 1,
 "values": [ 37, 38, 39 ]
 }
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.1 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://scenes/env/effects/dust.tscn", Vector2( 0, 20 ), false, false ],
+"method": "spawn_effect"
+} ]
+}
 
-[sub_resource type="Animation" id=3]
-resource_name = "run"
+[sub_resource type="Animation" id=18]
+resource_name = "run_left"
 length = 0.8
 loop = true
 tracks/0/type = "value"
@@ -402,6 +416,57 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
 "update": 1,
 "values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "res://scenes/env/effects/run.tscn", Vector2( 0, 18 ), true, false ],
+"method": "spawn_effect"
+}, {
+"args": [ "res://scenes/env/effects/run.tscn", Vector2( 0, 18 ), true, false ],
+"method": "spawn_effect"
+} ]
+}
+
+[sub_resource type="Animation" id=3]
+resource_name = "run_right"
+length = 0.8
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 16, 17, 18, 19, 20, 21, 22, 23 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2, 0.5 ),
+"transitions": PoolRealArray( 1, 1 ),
+"values": [ {
+"args": [ "res://scenes/env/effects/run.tscn", Vector2( 0, 18 ), false, false ],
+"method": "spawn_effect"
+}, {
+"args": [ "res://scenes/env/effects/run.tscn", Vector2( 0, 18 ), false, false ],
+"method": "spawn_effect"
+} ]
 }
 
 [sub_resource type="Animation" id=12]
@@ -420,8 +485,8 @@ tracks/0/keys = {
 "values": [ 80, 81, 82 ]
 }
 
-[sub_resource type="Animation" id=13]
-resource_name = "wall_slide"
+[sub_resource type="Animation" id=19]
+resource_name = "wall_slide_left"
 length = 0.2
 loop = true
 tracks/0/type = "value"
@@ -435,6 +500,51 @@ tracks/0/keys = {
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ 85, 86 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://scenes/env/effects/wall.tscn", Vector2( 5, 0 ), false, false ],
+"method": "spawn_effect"
+} ]
+}
+
+[sub_resource type="Animation" id=13]
+resource_name = "wall_slide_right"
+length = 0.2
+loop = true
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ 85, 86 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.2 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [ "res://scenes/env/effects/wall.tscn", Vector2( -5, 0 ), false, true ],
+"method": "spawn_effect"
+} ]
 }
 
 [sub_resource type="RectangleShape2D" id=7]
@@ -503,9 +613,11 @@ anims/hit = SubResource( 16 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 5 )
 anims/landing = SubResource( 6 )
-anims/run = SubResource( 3 )
+anims/run_left = SubResource( 18 )
+anims/run_right = SubResource( 3 )
 anims/shield = SubResource( 12 )
-anims/wall_slide = SubResource( 13 )
+anims/wall_slide_left = SubResource( 19 )
+anims/wall_slide_right = SubResource( 13 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 position = Vector2( -1, 12.5 )

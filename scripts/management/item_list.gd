@@ -22,13 +22,13 @@ func get_item_by_id(id: int) -> Dictionary:
 	return item	
 
 func bin_search(list: Array, start: int, end: int, target: int) -> Dictionary:
-	var passos: int = 0
+	#var passos: int = 0
 	while(start<=end):
-		passos+=1
-		print(passos)
+		#passos+=1
+		#print(passos)
 		var middle: int = (start+end)/2
 		if target == list[middle].id:
-			print("Total de passos: ",passos,"; ID do item: ",target," Complexidade O(log2(",passos,"))")
+			#print("Total de passos: ",passos,"; ID do item: ",target," Complexidade O(log2(",passos,"))")
 			return list[middle]
 		elif target > list[middle].id:
 			start = middle+1

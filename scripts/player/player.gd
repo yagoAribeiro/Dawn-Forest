@@ -60,6 +60,7 @@ func vertical_movement_env() -> void:
 			velocity.y -= wall_jump_speed
 			velocity.x += wall_impulse*wall_direction
 		else: 
+			spawn_effect("res://scenes/env/effects/jump.tscn", Vector2(0, 18), player_sprite.flip_h, false)
 			velocity.y -= jump_speed
 			
 func is_on_wall_slide() -> bool:
@@ -119,7 +120,18 @@ func gravity(delta: float) -> void:
 		if velocity.y >= player_gravity:
 			velocity.y = player_gravity
 
-
+func spawn_effect(path: String, offset: Vector2, is_hflipped: bool, is_vflipped: bool) -> void:
+	var instance: Effect = load(path).instance()
+	get_tree().root.call_deferred("add_child", instance)
+	if is_hflipped:
+		instance.flip_h = true
+		
+	if is_vflipped:
+		instance.flip_v = true
+	instance.global_position = global_position+offset
+	instance.play_effect()
+	
+	
 
 
 

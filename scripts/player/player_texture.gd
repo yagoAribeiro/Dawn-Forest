@@ -58,13 +58,13 @@ func hit_behavior() -> void:
 
 func horizontal_behavior(direction: Vector2) -> void:
 	if direction.x !=0:
-		animation.play("run")
+		animation.play("run"+suffix)
 	else:
 		animation.play("idle")
 	
 func action_behavior() -> void:
 	if player.wall_sliding:
-		animation.play("wall_slide")
+		animation.play("wall_slide"+suffix)
 		
 	elif player.attacking and normal_attack:
 		animation.play("attack" + suffix)

@@ -2,6 +2,7 @@ extends Item
 class_name PhysicalItem
 
 var item_scene: PackedScene = preload("res://scenes/item/item.tscn")
+var collect_effect: Resource = preload("res://scenes/env/effects/collect.tscn")
 onready var animation: AnimationPlayer = get_node("Animation")
 var player_ref: Player
 var compressed_data: Dictionary
@@ -34,6 +35,7 @@ func check_player_action() -> void:
 		var item: Item = item_scene.instance()
 		item.descompress_item_info(compressed_data)
 		player_ref.inventory.append(item)
+		spawn_effect()
 		call_deferred("queue_free")
 
 func spawn_item(item_position: Vector2) -> void:
@@ -43,6 +45,13 @@ func spawn_item(item_position: Vector2) -> void:
 		self.global_position = item_position
 		var impulse_value: Vector2 = Vector2(rng.randf_range(-30.0, 30.0), rng.randf_range(-80.0, -120.0))
 		apply_impulse(Vector2.ZERO, impulse_value)
+
+func spawn_effect()->void:
+	var effect: Effect = collect_effect.instance()
+	get_tree().root.call_deferred("add_child", effect)
+	effect.z_index = z_index
+	effect.global_position = global_position
+	effect.play_effect()
 
 func _on_PickUpArea_body_entered(player_body: Player):
 	player_ref = player_body
