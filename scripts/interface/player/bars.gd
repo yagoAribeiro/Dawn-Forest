@@ -35,12 +35,9 @@ func increase_max_value(type: String, max_value: int, value: int) -> void:
 			"exp":
 				current_exp = value
 				exp_bar.max_value = max_value
-				reset_exp_bar(max_value, current_exp)
-
-func reset_exp_bar(max_exp: int, value: int) -> void:
-	exp_bar.value = value
-	call_tween(exp_bar, 0, current_exp)
-
+				exp_bar.value = value
+				call_tween(exp_bar, 0, current_exp)
+	
 func update_value(type: String, new_value: int) -> void:
 	match(type):
 			"health":
