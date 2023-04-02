@@ -1,7 +1,7 @@
 extends Area2D
 class_name DetectionArea
 
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
+export(NodePath) onready var enemy = get_node(enemy) as EnemyTemplate
 
 
 

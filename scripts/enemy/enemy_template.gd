@@ -128,6 +128,12 @@ func stop_move(stopped: bool) ->void:
 		can_move = true
 		
 
+func dies()->void:
+	can_die = true
+	current_state = move_state.DEAD
+	get_tree().call_group("player_stats", "update_exp", stats.exp_value)
+	drop_item()
+
 func drop_item() -> void:
 	var randomizer: Gacha = Gacha.new()
 	dropped_itens = randomizer.gacha(drop_list)

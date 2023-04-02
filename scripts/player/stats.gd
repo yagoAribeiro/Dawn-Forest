@@ -46,9 +46,12 @@ func _ready() -> void:
 	
 	current_health = base_health + bonus_health
 	max_health = current_health
+	
+	get_tree().call_group("interface_bars", "init", max_health, max_mana, level_dict[str(level)])
 
 func update_exp(value: int) -> void:
 	current_exp += value
+	update_bars("exp", current_exp)
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
 		current_exp = leftover
@@ -57,10 +60,14 @@ func update_exp(value: int) -> void:
 	elif current_exp >= level_dict[str(level)] and level == 9:
 		current_exp = level_dict[str(level)]
 	
+	
 func on_level_up() -> void:
 	current_mana = base_mana+bonus_mana
 	current_health = base_health+bonus_health
-	
+	update_bars_max("health", max_health, current_health)
+	update_bars_max("mana", max_mana, current_mana)
+	yield(get_tree().create_timer(0.25), "timeout")
+	update_bars_max("exp", level_dict[str(level)], current_exp)
 
 func update_health(type: String, value: int) -> void:
 	match type:
@@ -68,7 +75,7 @@ func update_health(type: String, value: int) -> void:
 			current_health += value
 			if current_health >= max_health:
 				current_health = max_health
-				
+			
 		"Decrease":
 			verify_shield(value)
 			if current_health <= 0:
@@ -76,6 +83,8 @@ func update_health(type: String, value: int) -> void:
 			else: 
 				player.on_hit = true
 				player.attacking = false
+		
+	update_bars("health", current_health)	
 				
 func update_mana(type: String, value: int) -> void:
 	match type:
@@ -83,10 +92,10 @@ func update_mana(type: String, value: int) -> void:
 			current_mana += value
 			if current_mana >= max_mana:
 				current_mana = max_mana
-				
 		"Decrease":
 			current_mana -= value
-				
+	update_bars("mana", current_mana)	
+			
 func verify_shield(value: int) -> void:
 	var damage = value
 	if shielding:
@@ -95,6 +104,12 @@ func verify_shield(value: int) -> void:
 			
 		damage = abs((base_defense+bonus_defense) - value)
 	current_health -= damage
+
+func update_bars(value_type: String, value: int)->void:
+	get_tree().call_group("interface_bars", "update_value", value_type, value)
+
+func update_bars_max(value_type: String, max_value: int, value: int) -> void:
+	get_tree().call_group("interface_bars", "increase_max_value", value_type, max_value, value)
 
 func _on_CollisionArea_area_entered(area) -> void:
 	if area.name == "EnemyAttackArea":

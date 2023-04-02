@@ -15,5 +15,3 @@ export(int) var defense
 export(int) var gold_value
 export(int) var exp_value
 
-
-

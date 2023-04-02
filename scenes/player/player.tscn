@@ -650,7 +650,7 @@ energy = 0.0
 anims/RESET = SubResource( 14 )
 anims/light_anim = SubResource( 15 )
 
-[node name="Stats" type="Node" parent="."]
+[node name="Stats" type="Node" parent="." groups=["player_stats"]]
 script = ExtResource( 5 )
 player = NodePath("..")
 colisao = NodePath("../CollisionArea")

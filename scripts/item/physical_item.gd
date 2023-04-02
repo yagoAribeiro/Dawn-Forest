@@ -22,7 +22,7 @@ func _physics_process(_delta: float):
 		}
 	if can_sleep:
 		animation.play("idle")
-	check_player_action()
+		check_player_action()
 	
 
 func check_player_action() -> void:
@@ -30,6 +30,7 @@ func check_player_action() -> void:
 		for player_item in player_ref.inventory:
 			if player_item.item_name == self.item_name and player_item.item_type!="equipment":
 				player_item.quantity+=1
+				spawn_effect()
 				call_deferred("queue_free")
 				return
 		var item: Item = item_scene.instance()

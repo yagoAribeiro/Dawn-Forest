@@ -1,5 +1,5 @@
 extends Sprite
-class_name Player_Texture
+class_name PlayerTexture
 
 signal game_over
 var suffix: String = "_right"

@@ -66,7 +66,6 @@ func _on_animation_finished(anim_name: String) -> void:
 			
 		"dead":
 			animation.play("despawn")
-			enemy.drop_item()
 			
 		"despawn":
 			enemy.queue_free()

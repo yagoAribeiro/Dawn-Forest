@@ -2,8 +2,8 @@ extends Area2D
 class_name CollisionArea
 
 onready var timer: Timer = get_node("Timer")
-export(NodePath) onready var enemy = get_node(enemy) as KinematicBody2D
-export(NodePath) onready var stats = get_node(stats) as Node
+export(NodePath) onready var enemy = get_node(enemy) as EnemyTemplate
+export(NodePath) onready var stats = get_node(stats) as EnemyStats
 export(float) var immunity_time
 
 
@@ -23,7 +23,7 @@ func update_health(damage: int, type: String) -> void:
 			stats.health -= damage
 			enemy.hitted = true
 			if stats.health<=0:
-				enemy.can_die = true
+				enemy.dies()
 				return
 			enemy.stop_move(true)
 			enemy.can_hit = true
