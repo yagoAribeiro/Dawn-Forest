@@ -4,7 +4,7 @@ class_name PlayerTexture
 signal game_over
 var suffix: String = "_right"
 var normal_attack: bool = false
-
+var magic_attack: bool = false
 var shield_off: bool = false
 var crouching_off: bool = false
 
@@ -37,6 +37,7 @@ func verify_position(direction: Vector2) -> void:
 		flip_h = false
 		suffix = "_right"
 		player.wall_direction = -1
+		player.spell_offset.x = abs(player.spell_offset.x)
 		position = Vector2.ZERO
 		player.wall_ray.cast_to = Vector2(5.5, 0)
 		
@@ -44,6 +45,7 @@ func verify_position(direction: Vector2) -> void:
 		flip_h = true
 		suffix = "_left"
 		player.wall_direction = 1
+		player.spell_offset.x *= -1 if player.spell_offset.x>0 else 1
 		position = Vector2(-2, 0)
 		player.wall_ray.cast_to = Vector2(position.x-5.5, 0)
 
@@ -65,6 +67,9 @@ func horizontal_behavior(direction: Vector2) -> void:
 func action_behavior() -> void:
 	if player.wall_sliding:
 		animation.play("wall_slide"+suffix)
+	
+	elif player.attacking and magic_attack:
+		animation.play("magic_attack")
 		
 	elif player.attacking and normal_attack:
 		animation.play("attack" + suffix)
@@ -116,7 +121,10 @@ func _on_animation_finished(anim_name: String):
 		"light_anim":
 			if !player.light_on:
 				light_animation.stop()
-		
+				
+		"magic_attack":
+			magic_attack = false
+			player.attacking = false
 			
 
 

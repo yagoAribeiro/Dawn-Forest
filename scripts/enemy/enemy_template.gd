@@ -150,3 +150,5 @@ func drop() -> void:
 		item_dropped.get_data_by_id(item["id"])
 		item_dropped.spawn_item(global_position)
 
+
+

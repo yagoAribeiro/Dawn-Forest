@@ -3,6 +3,7 @@ class_name PlayerStats
 
 export(NodePath) onready var player = get_node(player) as KinematicBody2D
 export(NodePath) onready var colisao = get_node(colisao) as Area2D
+export(PackedScene) var floating_text: PackedScene
 onready var invencibility_timer: Timer = get_node("InvencibilityTimer")
 
 var shielding: bool = false
@@ -26,6 +27,7 @@ var max_health: int = 0
 var max_mana: int =  0
 
 var current_exp: int = 0
+var spell_mana_cost: int = 5
 
 var level: int = 1
 var level_dict: Dictionary = {
@@ -51,6 +53,7 @@ func _ready() -> void:
 
 func update_exp(value: int) -> void:
 	current_exp += value
+	spawn_floating_text("Exp", "+", value)
 	update_bars("exp", current_exp)
 	if current_exp >= level_dict[str(level)] and level < 9:
 		var leftover: int = current_exp - level_dict[str(level)]
@@ -62,16 +65,17 @@ func update_exp(value: int) -> void:
 	
 	
 func on_level_up() -> void:
-	current_mana = base_mana+bonus_mana
-	current_health = base_health+bonus_health
 	update_bars_max("health", max_health, current_health)
 	update_bars_max("mana", max_mana, current_mana)
+	current_mana = base_mana+bonus_mana
+	current_health = base_health+bonus_health
 	yield(get_tree().create_timer(0.25), "timeout")
 	update_bars_max("exp", level_dict[str(level)], current_exp)
 
 func update_health(type: String, value: int) -> void:
 	match type:
 		"Increase":
+			spawn_floating_text("Heal", "+", value)
 			current_health += value
 			if current_health >= max_health:
 				current_health = max_health
@@ -89,10 +93,12 @@ func update_health(type: String, value: int) -> void:
 func update_mana(type: String, value: int) -> void:
 	match type:
 		"Increase":
+			spawn_floating_text("Mana", "+", value)
 			current_mana += value
 			if current_mana >= max_mana:
 				current_mana = max_mana
 		"Decrease":
+			spawn_floating_text("Mana", "-", value)
 			current_mana -= value
 	update_bars("mana", current_mana)	
 			
@@ -100,9 +106,11 @@ func verify_shield(value: int) -> void:
 	var damage = value
 	if shielding:
 		if (base_defense + bonus_defense) > value:
+			spawn_floating_text("Heal", "+", 0)
 			return
 			
 		damage = abs((base_defense+bonus_defense) - value)
+	spawn_floating_text("Damage", "-", damage)
 	current_health -= damage
 
 func update_bars(value_type: String, value: int)->void:
@@ -120,3 +128,11 @@ func _on_CollisionArea_area_entered(area) -> void:
 
 func _on_InvencibilityTimer_timeout() -> void:
 	colisao.set_deferred("monitoring", true)
+
+func spawn_floating_text(type: String, type_sign: String, value: int) -> void:
+	var text: FloatText = floating_text.instance()
+	text.rect_global_position = player.global_position
+	text.type = type
+	text.value = value
+	text.type_sign = type_sign
+	get_tree().root.call_deferred("add_child", text)

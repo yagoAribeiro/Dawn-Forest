@@ -5,6 +5,7 @@ class_name Player
 onready var player_sprite: Sprite = get_node("Texture")
 onready var wall_ray: RayCast2D = get_node("WallRay")
 onready var stats: Node = get_node("Stats")
+onready var FIREBALL: Resource = preload("res://scenes/player/spells/fireball_spell.tscn")
 
 export(int) var speed
 export(int) var wall_impulse
@@ -16,6 +17,7 @@ export(int) var wall_jump_speed
 var inventory: Array = []
 var jump_count: int = 0
 var velocity: Vector2
+var spell_offset: Vector2 = Vector2(100, -50)
 
 #Flags
 var landing: bool = true
@@ -83,10 +85,19 @@ func actions_env() -> void:
 	defense()
 
 func attack() -> void:
-	var attack_condition: bool = not attacking and not crouching and not defending
-	if Input.is_action_just_pressed("attack") and attack_condition and is_on_floor():
-		attacking = true
-		player_sprite.normal_attack = true
+	var attack_condition: bool = not attacking and not crouching and not defending and is_on_floor()
+	if attack_condition:
+		if Input.is_action_just_pressed("attack"):
+			attacking = true
+			player_sprite.normal_attack = true
+			
+		elif Input.is_action_just_pressed("spell") and stats.current_mana>=stats.spell_mana_cost:
+			attacking = true
+			player_sprite.magic_attack = true
+
+func magic_attack() -> void:
+	stats.update_mana("Decrease", stats.spell_mana_cost)
+	spawn_fireball()
 	
 func crouch() -> void:
 	if Input.is_action_pressed("crouch") and is_on_floor() and not defending:
@@ -132,6 +143,10 @@ func spawn_effect(path: String, offset: Vector2, is_hflipped: bool, is_vflipped:
 	instance.play_effect()
 	
 	
-
+func spawn_fireball():
+	var instance: FireBall = FIREBALL.instance()
+	instance.spell_damage = stats.base_magic_attack+stats.bonus_magic_attack
+	instance.global_position = global_position+spell_offset
+	get_tree().root.call_deferred("add_child", instance)
 
 

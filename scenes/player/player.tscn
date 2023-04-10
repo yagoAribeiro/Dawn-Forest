@@ -1,10 +1,11 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=27 format=2]
 
 [ext_resource path="res://scripts/player/player.gd" type="Script" id=1]
 [ext_resource path="res://player/char_red.png" type="Texture" id=2]
 [ext_resource path="res://scripts/player/player_texture.gd" type="Script" id=3]
 [ext_resource path="res://effect/light.png" type="Texture" id=4]
 [ext_resource path="res://scripts/player/stats.gd" type="Script" id=5]
+[ext_resource path="res://scenes/interface/floating_text.tscn" type="PackedScene" id=6]
 
 [sub_resource type="Animation" id=1]
 length = 0.001
@@ -401,6 +402,36 @@ tracks/1/keys = {
 } ]
 }
 
+[sub_resource type="Animation" id=20]
+resource_name = "magic_attack"
+length = 0.8
+tracks/0/type = "value"
+tracks/0/path = NodePath("Texture:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 64, 65, 66, 67, 68, 69, 70, 71 ]
+}
+tracks/1/type = "method"
+tracks/1/path = NodePath(".")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0.4 ),
+"transitions": PoolRealArray( 1 ),
+"values": [ {
+"args": [  ],
+"method": "magic_attack"
+} ]
+}
+
 [sub_resource type="Animation" id=18]
 resource_name = "run_left"
 length = 0.8
@@ -613,6 +644,7 @@ anims/hit = SubResource( 16 )
 anims/idle = SubResource( 2 )
 anims/jump = SubResource( 5 )
 anims/landing = SubResource( 6 )
+anims/magic_attack = SubResource( 20 )
 anims/run_left = SubResource( 18 )
 anims/run_right = SubResource( 3 )
 anims/shield = SubResource( 12 )
@@ -654,6 +686,7 @@ anims/light_anim = SubResource( 15 )
 script = ExtResource( 5 )
 player = NodePath("..")
 colisao = NodePath("../CollisionArea")
+floating_text = ExtResource( 6 )
 
 [node name="InvencibilityTimer" type="Timer" parent="Stats"]
 one_shot = true

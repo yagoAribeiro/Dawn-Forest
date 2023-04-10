@@ -26,6 +26,7 @@ script = ExtResource( 7 )
 [node name="LevelDesign" type="Node2D" parent="."]
 
 [node name="Floor" type="TileMap" parent="LevelDesign"]
+z_index = 5
 tile_set = ExtResource( 3 )
 cell_size = Vector2( 32, 32 )
 show_collision = true
@@ -77,7 +78,7 @@ position = Vector2( 895, 497 )
 position = Vector2( 1161, 144 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
-position = Vector2( 175, 68 )
+position = Vector2( 115, 68 )
 z_index = 1
 wall_impulse = 350
 wall_jump_speed = 150

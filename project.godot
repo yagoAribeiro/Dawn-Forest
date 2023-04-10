@@ -69,6 +69,16 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/enemy/enemy_texture.gd"
 }, {
+"base": "Area2D",
+"class": "FireBall",
+"language": "GDScript",
+"path": "res://scripts/player/spells/fireball_spell.gd"
+}, {
+"base": "Label",
+"class": "FloatText",
+"language": "GDScript",
+"path": "res://scripts/interface/game/floating_text.gd"
+}, {
 "base": "Node",
 "class": "Gacha",
 "language": "GDScript",
@@ -202,6 +212,8 @@ _global_script_class_icons={
 "EnemyStats": "",
 "EnemyTemplate": "",
 "EnemyTexture": "",
+"FireBall": "",
+"FloatText": "",
 "Gacha": "",
 "GitAPI": "",
 "IPC": "",
@@ -231,6 +243,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Dawn Forest"
+run/main_scene="res://scenes/management/level.tscn"
 config/icon="res://icon.png"
 
 [display]
@@ -248,10 +261,6 @@ window/stretch/aspect="expand"
 
 version_control_autoload_on_startup=true
 version_control_plugin_name="GitAPI"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "res://addons/godot_editor_discord_presence/plugin.cfg" )
 
 [gdnative]
 
@@ -304,6 +313,11 @@ defense={
 ui_interact={
 "deadzone": 0.5,
 "events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":69,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
+ ]
+}
+spell={
+"deadzone": 0.5,
+"events": [ Object(InputEventKey,"resource_local_to_scene":false,"resource_name":"","device":0,"alt":false,"shift":false,"control":false,"meta":false,"command":false,"pressed":false,"scancode":81,"physical_scancode":0,"unicode":0,"echo":false,"script":null)
  ]
 }
 

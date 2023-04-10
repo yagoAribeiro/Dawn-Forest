@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://scripts/interface/game/floating_text.gd" type="Script" id=1]
+[ext_resource path="res://font/thaleah_fat.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 2 )
+
+[node name="FloatingText" type="Label"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+rect_scale = Vector2( 1e-05, 1e-05 )
+custom_fonts/font = SubResource( 1 )
+script = ExtResource( 1 )
+exp_color = Color( 0.992157, 0.635294, 0.0235294, 1 )
+heal_color = Color( 0.145098, 0.803922, 0.0901961, 1 )
+mana_color = Color( 0.0431373, 0.8, 1, 1 )
+damage_color = Color( 0.870588, 0.101961, 0.101961, 1 )
+
+[node name="Tween" type="Tween" parent="."]
+
+[connection signal="tween_all_completed" from="Tween" to="." method="_on_Tween_tween_all_completed"]

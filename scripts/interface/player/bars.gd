@@ -27,11 +27,11 @@ func increase_max_value(type: String, max_value: int, value: int) -> void:
 			"health":
 				current_health = value
 				health_bar.max_value = max_value
-				update_value(type, value)
+				update_value(type, max_value)
 			"mana":
 				current_mana = value
 				mana_bar.max_value = max_value
-				update_value(type, value)
+				update_value(type, max_value)
 			"exp":
 				current_exp = value
 				exp_bar.max_value = max_value
