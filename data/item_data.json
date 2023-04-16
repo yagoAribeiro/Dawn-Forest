@@ -3,7 +3,7 @@
         "name": "Health Potion",
         "id": 0,
         "type": "consumable",
-        "gold_value": 18,
+        "gold_value": 30,
         "consumable_info": {
             "use_type": "health",
             "use_value": 5
@@ -15,7 +15,7 @@
         "name": "Mana Potion",
         "id": 1,
         "type": "consumable",
-        "gold_value": 15,
+        "gold_value": 30,
         "consumable_info": {
             "use_type": "mana",
             "use_value": 5
@@ -29,19 +29,20 @@
         "type": "equipment",
         "stats": {
             "phy_dmg": 0,
-            "mgk_dmg": 4,
-            "max_health": 10,
-            "max_mana": 2
+            "mgk_dmg": 2,
+            "max_health": 1,
+            "max_mana": 2,
+            "defense": 1
         },
-        "gold_value": 45,
+        "gold_value": 150,
         "item_frame": "/equipment/whale_mask.png",
-        "desc": "A face de uma baleia derrotada, um forte campo mágico ressona de seu entorno."
+        "desc": "A face de uma baleia derrotada, uma forte essência mágica ressona de seu entorno."
     },
     {
         "name": "Whale Eye",
         "id": 3,
         "type": "resource",
-        "gold_value": 21,
+        "gold_value": 50,
         "item_frame": "/resource/whale/whale_eye.png",
         "desc": "O olho que restou de uma baleia derrotada em combate."
     },
@@ -49,8 +50,86 @@
         "name": "Whale Tail",
         "id": 4,
         "type": "resource",
-        "gold_value": 60,
+        "gold_value": 50,
         "item_frame": "/resource/whale/whale_tail.png",
         "desc": "A cauda de uma baleia, um item extremamente exótico!"
+    },
+    {
+        "name": "Whale Mouth",
+        "id": 5,
+        "type": "resource",
+        "gold_value": 50,
+        "item_frame": "/resource/whale/whale_mouth.png",
+        "desc": "A boca de uma baleia derrotada."
+    },
+    {
+        "name": "Crabby Eyes",
+        "id": 6,
+        "type": "resource",
+        "gold_value": 50,
+        "item_frame": "/resource/crabby/crab_eye.png",
+        "desc": "Os olhos de um caranguejo lutador."
+    },
+    {
+        "name": "Crabby Belt",
+        "id": 7,
+        "type": "equipment",
+        "stats": {
+            "phy_dmg": 0,
+            "mgk_dmg": 0,
+            "max_health": 8,
+            "max_mana": 0,
+            "defense": 3
+        },
+        "gold_value": 200,
+        "item_frame": "/equipment/crabby/crabby_belt.png",
+        "desc": "O cinturão de um grande caranguejo campeão de luta."
+    },
+    {
+        "name": "Crabby Axe",
+        "id": 8,
+        "type": "equipment",
+        "stats": {
+            "phy_dmg": 3,
+            "mgk_dmg": 0,
+            "max_health": 0,
+            "max_mana": 0,
+            "defense": 0
+        },
+        "gold_value": 250,
+        "item_frame": "/equipment/crabby/crabby_axe.png",
+        "desc": "Um lendário machado de guerra feito das garras de um caranguejo."
+    },
+    {
+        "name": "Crabby Pincers",
+        "id": 9,
+        "type": "resource",
+        "gold_value": 50,
+        "item_frame": "/resource/crabby/crab_pincers.png",
+        "desc": "As garras de um caranguejo lutador."
+    },
+    {
+        "name": "Super Mana Potion",
+        "id": 10,
+        "type": "consumable",
+        "gold_value": 90,
+        "consumable_info": {
+            "use_type": "mana",
+            "use_value": 15
+        },
+        "item_frame": "/consumable/+2_mana_potion.png",
+        "desc": "Uma super poção de mana que irá satisfazer sua sede mágica!"
+    },
+    {
+        "name": "Super Health Potion",
+        "id": 11,
+        "type": "consumable",
+        "gold_value": 90,
+        "consumable_info": {
+            "use_type": "health",
+            "use_value": 15
+        },
+        "item_frame": "/consumable/+2_health_potion.png",
+        "desc": "Uma super poção de vida que irá revigorar sua alma!"
     }
 ]

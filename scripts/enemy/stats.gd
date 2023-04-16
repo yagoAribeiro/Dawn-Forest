@@ -8,7 +8,6 @@ export(int) var gravity_speed
 export(int) var chase_speed
 export(int) var proximity_threshold
 export(int) var raycast_default_position
-export(int) var detection_area_default_position
 export(int) var max_health
 export(int) onready var health = max_health
 export(int) var defense

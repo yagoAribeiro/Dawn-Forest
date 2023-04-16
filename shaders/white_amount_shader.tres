@@ -2,7 +2,7 @@
 
 [resource]
 code = "shader_type canvas_item;
-uniform float white_amount: hint_range(0.0, 5.0, 0.1);
+uniform float white_amount: hint_range(0.0, 2.0, 0.1);
 
 void fragment(){
 	vec4 new_pixel_color = texture(TEXTURE, UV);

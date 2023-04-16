@@ -1,7 +1,10 @@
 extends EnemyTexture
-class_name WhaleTexture
+
+class_name CrabbyTexture
+onready var attack_effect: Resource = preload("res://scenes/env/effects/crabby_attack.tscn")
 
 func animate(velocity: Vector2) -> void:
+	
 	shader_animations()
 	if enemy.can_hit or enemy.can_die or enemy.can_attack:
 		action_behavior()
@@ -11,7 +14,6 @@ func animate(velocity: Vector2) -> void:
 func move_behavior(velocity: Vector2) -> void:
 	if velocity.x != 0:
 		animation.play("run")
-		enemy.looking_back = false
 	else:
 		animation.play("idle")
 	
@@ -29,14 +31,16 @@ func action_behavior() -> void:
 		animation.play("attack")
 		
 	elif enemy.can_hit:
-		if enemy.hitted and animation.current_animation == "hit":
-			animation.stop()
-			
 		animation.play("hit")
 		enemy.can_attack = false	
 		enemy.hitted = false
-		
-		
+
+func make_effect()->void:
+	var effect_instance: Effect = attack_effect.instance()
+	get_tree().root.call_deferred("add_child", effect_instance)
+	effect_instance.global_position = enemy.global_position
+	effect_instance.play_effect()
+
 func _on_animation_finished(anim_name: String) -> void:
 	match anim_name:
 		"hit": 
@@ -61,4 +65,5 @@ func _on_animation_finished(anim_name: String) -> void:
 			
 		"idle":
 			if enemy.current_state == enemy.move_state.PATROL:
-				enemy.last_direction.x *=-1
+				enemy.last_direction.x *=-1 
+	

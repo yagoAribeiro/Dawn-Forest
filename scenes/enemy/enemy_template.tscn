@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scripts/enemy/detection_area.gd" type="Script" id=1]
 [ext_resource path="res://scripts/enemy/enemy_template.gd" type="Script" id=2]
@@ -12,7 +12,39 @@
 [sub_resource type="ShaderMaterial" id=1]
 resource_local_to_scene = true
 shader = ExtResource( 6 )
-shader_param/white_amount = null
+shader_param/white_amount = 0.0
+
+[sub_resource type="Animation" id=3]
+resource_name = "RESET"
+length = 0.001
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/white_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="Animation" id=2]
+resource_name = "blink"
+length = 0.25
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:material:shader_param/white_amount")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ 5.0, 0.0 ]
+}
 
 [node name="EnemyTemplate" type="KinematicBody2D"]
 collision_layer = 8
@@ -27,6 +59,9 @@ animation = NodePath("../Animation")
 attack_area_collision = NodePath("../EnemyAttackArea")
 
 [node name="ShaderAnimations" type="AnimationPlayer" parent="Texture"]
+autoplay = "RESET"
+anims/RESET = SubResource( 3 )
+anims/blink = SubResource( 2 )
 
 [node name="Collision" type="CollisionShape2D" parent="."]
 
@@ -62,6 +97,7 @@ script = ExtResource( 5 )
 [node name="Animation" type="AnimationPlayer" parent="."]
 
 [node name="FloorRay" type="RayCast2D" parent="."]
+enabled = true
 collision_mask = 3
 
 [node name="Stats" type="Node" parent="."]

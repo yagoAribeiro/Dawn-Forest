@@ -6,12 +6,13 @@ export(NodePath) onready var animation = get_node(animation) as AnimationPlayer
 export(NodePath) onready var attack_area_collision = get_node(attack_area_collision) as Area2D
 onready var shader_animation: AnimationPlayer = get_node("ShaderAnimations")
 
+	
 func animate(_velocity: Vector2) -> void:
-	pass
-
+	shader_animations()
 
 func _on_animation_finished(_anim_name: String) -> void:
 	pass 
 	
 func shader_animations() -> void:
-	pass
+	if enemy.hitted and animation.current_animation!="hit":
+		shader_animation.play("blink")

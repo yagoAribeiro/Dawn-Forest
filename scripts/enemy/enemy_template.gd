@@ -1,15 +1,21 @@
 extends KinematicBody2D
 class_name EnemyTemplate
 
-#Consts
+#Onready Vars
 onready var texture:Sprite = get_node("Texture")
 onready var floor_ray:RayCast2D = get_node("FloorRay")
-onready var animation:AnimationPlayer = get_node("Animation")
 onready var stats:Node = get_node("Stats")
 onready var detection_area:Area2D = get_node("DetectionArea")
 onready var item_scene: PackedScene = preload("res://scenes/item/physical_item.tscn")
 onready var dice: Resource = preload("res://scenes/management/dice.tscn")
-onready var drop_list: Array 
+onready var drop_list: Array
+onready var speed = stats.speed
+onready var chase_speed = stats.chase_speed
+onready var gravity_speed = stats.gravity_speed
+onready var proximity_threshold = stats.proximity_threshold
+onready var raycast_default_position = stats.raycast_default_position
+
+
 #Flags
 var can_die: bool = false
 var can_hit: bool = false
@@ -17,19 +23,13 @@ var can_attack: bool = false
 var can_move: bool = true
 var can_cancel: bool = false
 var hitted: bool = false
+var sorted_direction: bool = false
+
+#Vars
 var velocity: Vector2
-var looking_back = false
 var player_ref: Player = null
 var last_direction: Vector2 = Vector2(1.0, 1.0)
-var sorted_direction: bool = false
 var dropped_itens: Array = []
-#Vars
-onready var speed = stats.speed
-onready var chase_speed = stats.chase_speed
-onready var gravity_speed = stats.gravity_speed
-onready var proximity_threshold = stats.proximity_threshold
-onready var raycast_default_position = stats.raycast_default_position
-onready var detection_area_default_position = stats.detection_area_default_position
 
 #States
 enum move_state{PATROL, CHASE, DEAD}
@@ -83,15 +83,10 @@ func move_behavior(_delta: float) -> void:
 
 func sort_direction() -> void:
 	if sorted_direction!= true:
+		randomize()
 		var random: int = int(round(rand_range(1.0, 2.0)))
-		if random == 2.0:
-			last_direction.x = -1
-		else:
-			last_direction.x = 1
+		last_direction.x = sign(random) if random==1.0 else -sign(random)
 		sorted_direction = true
-
-func look_back(look_back: bool = false) -> void:
-	looking_back = look_back
 
 func floor_collision() -> bool:
 	if floor_ray.is_colliding():
@@ -109,17 +104,16 @@ func verify_position() -> void:
 	if direction > 0:
 		texture.flip_h = true
 		floor_ray.position.x = abs(raycast_default_position)
-		if looking_back:
-			detection_area.position.x = detection_area_default_position*0.75
-		else:	
-			detection_area.position.x = abs(detection_area_default_position)
+		direction_process(1)
+		
 	elif direction < 0:
 		texture.flip_h = false
 		floor_ray.position.x = raycast_default_position
-		if looking_back:
-			detection_area.position.x = abs(detection_area_default_position)*0.75
-		else:	
-			detection_area.position.x = detection_area_default_position
+		direction_process(-1)
+	
+	
+func direction_process(_direction: float)->void:
+	pass
 			
 func stop_move(stopped: bool) ->void:
 	if stopped:

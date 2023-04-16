@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=2]
+[gd_scene load_steps=12 format=2]
 
 [ext_resource path="res://scenes/env/day_cycle.tscn" type="PackedScene" id=1]
 [ext_resource path="res://scenes/env/background.tscn" type="PackedScene" id=2]
@@ -9,6 +9,7 @@
 [ext_resource path="res://scripts/management/level.gd" type="Script" id=7]
 [ext_resource path="res://scenes/enemy/whale.tscn" type="PackedScene" id=8]
 [ext_resource path="res://scenes/interface/hud.tscn" type="PackedScene" id=9]
+[ext_resource path="res://scenes/enemy/crabby.tscn" type="PackedScene" id=10]
 
 [sub_resource type="Environment" id=1]
 background_mode = 4
@@ -56,9 +57,6 @@ position = Vector2( 421, 134 )
 [node name="Whale2" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 310, 145 )
 
-[node name="Whale3" parent="Enemies" instance=ExtResource( 8 )]
-position = Vector2( 499, 138 )
-
 [node name="Whale4" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 889, 142 )
 
@@ -76,6 +74,9 @@ position = Vector2( 895, 497 )
 
 [node name="Whale9" parent="Enemies" instance=ExtResource( 8 )]
 position = Vector2( 1161, 144 )
+
+[node name="Crabby" parent="Enemies" instance=ExtResource( 10 )]
+position = Vector2( 507, 145 )
 
 [node name="Player" parent="." instance=ExtResource( 6 )]
 position = Vector2( 115, 68 )

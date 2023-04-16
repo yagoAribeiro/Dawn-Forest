@@ -3,7 +3,6 @@ class_name Dice
 var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 var count: int = 0
 var result: int = 0
-var drops: Array = []
 var out: bool = false
 signal wait_timer()
 onready var texture: Sprite = get_node("Texture")
