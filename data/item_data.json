@@ -79,10 +79,10 @@
             "mgk_dmg": 0,
             "max_health": 8,
             "max_mana": 0,
-            "defense": 3
+            "defense": 0
         },
         "gold_value": 200,
-        "item_frame": "/equipment/crabby/crabby_belt.png",
+        "item_frame": "/equipment/crabby_belt.png",
         "desc": "O cinturão de um grande caranguejo campeão de luta."
     },
     {
@@ -92,12 +92,12 @@
         "stats": {
             "phy_dmg": 3,
             "mgk_dmg": 0,
-            "max_health": 0,
+            "max_health": 3,
             "max_mana": 0,
             "defense": 0
         },
         "gold_value": 250,
-        "item_frame": "/equipment/crabby/crabby_axe.png",
+        "item_frame": "/equipment/crabby_axe.png",
         "desc": "Um lendário machado de guerra feito das garras de um caranguejo."
     },
     {
@@ -131,5 +131,58 @@
         },
         "item_frame": "/consumable/+2_health_potion.png",
         "desc": "Uma super poção de vida que irá revigorar sua alma!"
+    },
+    {
+        "name": "Pink Star Belt",
+        "id": 12,
+        "type": "equipment",
+        "stats": {
+            "phy_dmg": 0,
+            "mgk_dmg": 0,
+            "max_health": 5,
+            "max_mana": 3,
+            "defense": 1
+        },
+        "gold_value": 300,
+        "item_frame": "/equipment/pink_star_belt.png",
+        "desc": "O cinturão de uma estrela."
+    },
+    {
+        "name": "Pink Star Bow",
+        "id": 13,
+        "type": "equipment",
+        "stats": {
+            "phy_dmg": 2,
+            "mgk_dmg": 2,
+            "max_health": 0,
+            "max_mana": 3,
+            "defense": 0
+        },
+        "gold_value": 350,
+        "item_frame": "/equipment/pink_star_bow.png",
+        "desc": "Um lendário arco feito do corpo de uma estrela."
+    },
+    {
+        "name": "Pink Star Shield",
+        "id": 14,
+        "type": "equipment",
+        "stats": {
+            "phy_dmg": 0,
+            "mgk_dmg": 0,
+            "max_health": 4,
+            "max_mana": 0,
+            "defense": 3
+        },
+        "gold_value": 250,
+        "item_frame": "/equipment/pink_star_shield.png",
+        "desc": "Um escudo feito do corpo de uma estrela."
+    },
+    {
+        "name": "Pink Star Mouth",
+        "id": 15,
+        "type": "resource",
+        "gold_value": 50,
+        "item_frame": "/resource/pink_star/pink_star_mouth.png",
+        "desc": "A boca de um lutador estrela."
     }
 ]

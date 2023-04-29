@@ -132,7 +132,7 @@ func drop_item() -> void:
 	var randomizer: Gacha = Gacha.new()
 	dropped_itens = randomizer.gacha(drop_list)
 	if dropped_itens.size()!=0:
-		var dice_instance = dice.instance()
+		var dice_instance: Dice = dice.instance()
 		get_tree().root.add_child(dice_instance)
 		dice_instance.global_position = Vector2(global_position.x, global_position.y-40)
 		dice_instance.start_timer(randomizer.d20result, self)	
