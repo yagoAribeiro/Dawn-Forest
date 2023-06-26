@@ -549,5 +549,5 @@ gravity_speed = 350
 chase_speed = 60
 proximity_threshold = 20
 raycast_default_position = -33
-max_health = 15
+max_health = 2
 exp_value = 4

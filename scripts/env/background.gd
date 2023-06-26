@@ -19,4 +19,4 @@ func _physics_process(delta: float):
 						get_child(child_index).motion_offset.x -= delta*object.motion_offset.x
 					else:
 						get_child(child_index).motion_scale.x = object.scale.x
-		
+	

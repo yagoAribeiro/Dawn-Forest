@@ -7,19 +7,16 @@ var detection_area_default_position:float = -110
 var looking_back = false
 
 func _ready():
-	drop_list = [
 	#Ordem de raridade decrescente
-	{"name": "Whale Tail", "id": 4, "chance": 25.0},
-	{"name": "Whale Eye", "id": 3, "chance": 25.0},
-	{"name": "Whale Mouth", "id": 5, "chance": 25.0},
-	{"name": "Health Potion", "id": 0, "chance": 15.0},
-	{"name": "Mana Potion", "id": 1, "chance": 15.0},
-	{"name": "Super Mana Potion", "id": 10, "chance": 3.0},
-	{"name": "Whale Mask", "id": 2, "chance": 1.5}
-]
+	drop_list.add(ChanceInstance.new({"name":"Whale Tail", "id":4}, 25.0))
+	drop_list.add(ChanceInstance.new({"name":"Whale Eye", "id":3}, 25.0))
+	drop_list.add(ChanceInstance.new({"name":"Whale Mouth","id":5}, 25.0))
+	drop_list.add(ChanceInstance.new({"name":"Health Potion","id":0}, 15.0))
+	drop_list.add(ChanceInstance.new({"name":"Mana Potion","id":1}, 15.0))
+	drop_list.add(ChanceInstance.new({"name":"Super Mana Potion","id":10}, 3.0))
+	drop_list.add(ChanceInstance.new({"name":"Whale Mask","id":2}, 1.5))
+
 	
-
-
 func look_back(look_back: bool = false) -> void:
 	looking_back = look_back
 	

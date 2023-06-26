@@ -8,7 +8,7 @@ onready var stats:Node = get_node("Stats")
 onready var detection_area:Area2D = get_node("DetectionArea")
 onready var item_scene: PackedScene = preload("res://scenes/item/physical_item.tscn")
 onready var dice: Resource = preload("res://scenes/management/dice.tscn")
-onready var drop_list: Array
+onready var drop_list: ChanceCollection = ChanceCollection.new()
 onready var speed = stats.speed
 onready var chase_speed = stats.chase_speed
 onready var gravity_speed = stats.gravity_speed
@@ -24,12 +24,13 @@ var can_move: bool = true
 var can_cancel: bool = false
 var hitted: bool = false
 var sorted_direction: bool = false
+signal on_enemy_died
 
 #Vars
 var velocity: Vector2
 var player_ref: Player = null
 var last_direction: Vector2 = Vector2(1.0, 1.0)
-var dropped_itens: Array = []
+var dropped_itens: Array
 
 #States
 enum move_state{PATROL, CHASE, DEAD}
@@ -125,6 +126,7 @@ func stop_move(stopped: bool) ->void:
 func dies()->void:
 	can_die = true
 	current_state = move_state.DEAD
+	emit_signal("on_enemy_died")
 	get_tree().call_group("player_stats", "update_exp", stats.exp_value)
 	drop_item()
 

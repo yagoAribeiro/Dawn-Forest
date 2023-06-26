@@ -463,7 +463,6 @@ shape = SubResource( 12 )
 
 [node name="EnemyAttackArea" parent="." index="4"]
 damage = 6
-invencibility_time = 1
 
 [node name="Collision" parent="EnemyAttackArea" index="0"]
 position = Vector2( 2, 1 )
@@ -493,7 +492,7 @@ gravity_speed = 350
 chase_speed = 55
 proximity_threshold = 35
 raycast_default_position = -16
-max_health = 8
+max_health = 2
 exp_value = 5
 
 [connection signal="timeout" from="Animation/AttackCooldown" to="Texture" method="_on_AttackCooldown_timeout"]
